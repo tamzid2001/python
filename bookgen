@@ -1,0 +1,27 @@
+import openf
+from random import random
+
+def one_of( g ):
+    return g[ int(random() * len(g)) ]
+
+x = openf.open_file("sherlock.txt")
+_list = []
+_list = x.split('\n')
+_list = _list[94:200]
+
+def book():
+    b = {}
+    for word in _list[:-1]:
+        if word in b.keys():
+            b[word].append(_list[_list.index(word)+1])
+        else:
+            b[word] = [_list[_list.index(word)+1]]
+    return b
+
+def sengen():
+    sen = ""
+    y = book().keys()
+    for keys in y:
+        sen += one_of(b[keys])
+    return sen
+    print (sen)
