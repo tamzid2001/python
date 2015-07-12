@@ -1,0 +1,5 @@
+def open_file(filename):
+    f = open(filename)
+    s = f.read()
+    f.close()
+    return s
