@@ -1,14 +1,11 @@
-import openf
+import reader
 from random import random
-
 def one_of( g ):
     return g[ int(random() * len(g)) ]
-
-x = openf.open_file("sherlock.txt")
+x = reader.open_file("sherlock.txt")
 _list = []
 _list = x.split('\n')
-_list = _list[94:200]
-
+_list = _list[94:500]
 def book():
     b = {}
     for word in _list[:-1]:
@@ -17,11 +14,16 @@ def book():
         else:
             b[word] = [_list[_list.index(word)+1]]
     return b
-
 def sengen():
     sen = ""
     y = book().keys()
     for keys in y:
-        sen += one_of(b[keys])
+        sen += (one_of(book()[keys]) + " ")
     return sen
     print (sen)
+
+def write_file( s, fname ):
+    f = open( fname, 'a' )
+    f.write( s )
+    f.close()
+write_file(sengen(),"poop.txt")
